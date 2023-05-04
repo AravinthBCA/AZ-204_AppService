@@ -1,0 +1,1 @@
+This project is developed for learning Azure App Service.
