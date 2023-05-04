@@ -15,12 +15,12 @@ public class AzureAppServiceApplication {
 	
 	@GetMapping("/")
 	public String message() {
-		return "Hello Everyone this is Aravinth";
+		return "Hello Everyone this is Aravinth...";
 	}
 	
 	@GetMapping("/msg")
 	public String messages() {
-		return "This is production";
+		return "This is production...";
 	}
 
 }
