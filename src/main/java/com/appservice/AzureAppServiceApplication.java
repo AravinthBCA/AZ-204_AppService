@@ -17,5 +17,10 @@ public class AzureAppServiceApplication {
 	public String message() {
 		return "Hello Everyone this is Aravinth";
 	}
+	
+	@GetMapping("/msg")
+	public String messages() {
+		return "This is production";
+	}
 
 }
