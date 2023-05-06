@@ -20,7 +20,7 @@ public class AzureAppServiceApplication {
 	
 	@GetMapping("/msg")
 	public String messages() {
-		return "This is production...";
+		return "This is production slot...";
 	}
 
 }
