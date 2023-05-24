@@ -1,4 +1,3 @@
-FROM openjdk:17-oracle
+FROM adoptopenjdk/openjdk11:latest
 ADD target/*.jar app.jar
-EXPOSE 80
 ENTRYPOINT ["java","-jar","app.jar"]
