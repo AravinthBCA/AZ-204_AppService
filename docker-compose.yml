@@ -1,0 +1,48 @@
+version: '3.7'
+# Removed subprocess.CalledProcessError: Command '['/usr/local/bin/docker-credential-desktop', 'get']' returned non-zero exit status 1
+# I had this:
+# cat ~/.docker/config.json
+# {"auths":{},"credsStore":"", "credsStore":"desktop","stackOrchestrator":"swarm"}
+# I updated to this:
+# {"auths":{},"credsStore":"","stackOrchestrator":"swarm"}
+services:
+  todo-web-application:
+    image: containerapp
+    #build:
+      #context: .
+      #dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    restart: failure
+    depends_on: # Start the depends_on first
+      - mysql 
+    environment:
+      RDS_HOSTNAME: mysql
+      RDS_PORT: 3306
+      RDS_DB_NAME: todos
+      RDS_USERNAME: root
+      RDS_PASSWORD: password
+    networks:
+      - mynetwork
+
+  mysql:
+    image: mysql
+    ports:
+      - "3306:3306"
+    restart: failure
+    environment:
+      MYSQL_ROOT_PASSWORD: password 
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: todos
+    # volumes:
+    #   - mysql-database-data-volume:/var/lib/mysql
+    networks:
+      - mynetwork 
+  
+# Volumes
+# volumes:
+#   mysql-database-data-volume:
+
+networks:
+  mynetwork:
